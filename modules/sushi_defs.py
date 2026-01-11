@@ -1,5 +1,5 @@
 # sushi_defs.py
-# Ver.2025-11-05@1911
+# Ver.2026-01-06@1911
 
 ##########################
 # params help/definition
@@ -69,13 +69,7 @@ PARAMETERS = {
 #board specific help
 ##########################
 BOARD_ID_0_HELP = """
-* ONLINE DOC
-    -> ESP32-DevKitC: "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html"
-    -> Sushi Board: "https://sushi-iot.github.io/sushi-iot-board/"
-
-### PINOUT
-
-#system(always present)
+**system(always present)**
 * ON-BOARD-BUTTON: GPIO0
 * I2C_SDA_PIN:GPIO21
 * I2C_SCL_PIN:GPIO22
@@ -83,53 +77,58 @@ BOARD_ID_0_HELP = """
 * REPL_UART1_RX:GPIO3(RX)
 * VIN-ADC:GPIO36(VP)
 
-#GPIO(free I/O pins) 
+**GPIO(free I/O pins)**
 * GPIO_1:GPIO19
 * GPIO_2:GPIO18
 * GPIO_3:GPIO5
 * GPIO_4:GPIO4
 * GPIO_5:GPIO13
-#GPI(free Input only pins)
+
+**GPI(free Input only pins)**
 * GPI_1:GPIO39(VN)
 * GPI_2:GPIO35
-#GPO(free Output only pins)
+
+**GPO(free Output only pins)**
 * GPO_1:GPIO2
 
-#power(if 'battery_enable' > 0)
+**power(if 'battery_enable' > 0)**
 * BATT-ADC:GPIO34[3]
 
-#modem(if 'modem_enable' > 0)
+**modem(if 'modem_enable' > 0)**
 * MODEM_UART_TX:GPIO27[1]
 * MODEM_UART_RX:GPIO26[1]
 * MODEM_PWKEY:GPIO32[1]
 * MODEM_POWER:GPIO23[1]
 
-#io-expander(if 'ioex_enable' > 0)
+**io-expander(if 'ioex_enable' > 0)**
 * IOEXP_I2C_INT_PIN:GPIO14[1]
 
-#direct 4B keyboard(if 'keyboard_enable'=100)
+**direct 4B keyboard(if 'keyboard_enable'=100)**
 * COMMON: GND
 * IN_1(-): GPIO_1
 * IN_2(+): GPIO_2
 * IN_3(BACK): GPIO_3
 * IN_4(ENT): GPIO_4
 
-#relays
+**relays**
 * RELE_1_PIN:GPIO15 (if 'rele_out_enable'>0) [2]
 * RELE_2_PIN:GPIO12 (if 'rele_out_enable'=2) [2]
 
-#temperature sensor(if 'ext_temperature_sensor_enable' > 0)
+**temperature sensor(if 'ext_temperature_sensor_enable' > 0)**
 * DS18B20_DATA:GPIO33[1]
 
-#buzzer(if 'buzzer_enable' > 0)
+**buzzer(if 'buzzer_enable' > 0)**
 * BUZZER_PIN:GPIO25[1]
 
-#notes/syntax
+**notes/syntax**
 [1] : altenative use is GPIO
-[2] : altenative use is GPO 
+[2] : altenative use is GPO
 [3] : altenative use is GPI
 GPIOXX : logical ESP32 function name. XX is the pin number to be used in the code.
 
+**ONLINE DOC**
+* [ESP32-DevKitC official doc](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html)
+* [Sushi Board on GitHub](https://github.com/sushi-iot/sushi-iot-board)
 
 """
 
