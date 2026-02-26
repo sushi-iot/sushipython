@@ -1,6 +1,6 @@
 # Frozen MicroPython modules
 
-This folder contains the *frozen* modules, these are classic ".py" modules embedded into Sushi-IoT-Framework firmware.  
+This folder contains the *frozen* modules, these are classic ".py" modules embedded into SushiPython firmware.  
 It's possible extend/edit these modules just loading the modified .py file into MicroPython file system, in this way the frozen version will be replaced by the ones save into the disk.
 
 

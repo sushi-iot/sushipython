@@ -4,10 +4,10 @@
 
 **ONLINE DOC**
 
-* [This help markdown formatted](https://github.com/sushi-iot/sushi-iot-framework/blob/main/examples/sushi-quick-reference.md)
-* [Sushi-IoT documentation](https://sushi-iot.github.io/sushi-iot-framework/)
-* [GitHub-Home](https://github.com/sushi-iot/sushi-iot-framework)
-* [GitHub-Examples](https://github.com/sushi-iot/sushi-iot-framework/tree/main/examples)
+* [This help markdown formatted](https://github.com/sushi-iot/sushipython/blob/main/examples/sushi-quick-reference.md)
+* [Sushi-IoT documentation](https://sushi-iot.github.io/sushipython/)
+* [GitHub-Home](https://github.com/sushi-iot/sushipython)
+* [GitHub-Examples](https://github.com/sushi-iot/sushipython/tree/main/examples)
 
 **CORE MODULE**  
 
@@ -21,7 +21,7 @@
 * Integrated "frozen" `.py` modules are:
   - `sushi_menu` : User menu management  
   - `sushi_utils` : System setup, status & utilities  
-* [Frozen modules source code](https://github.com/sushi-iot/sushi-iot-framework/tree/main/modules)
+* [Frozen modules source code](https://github.com/sushi-iot/sushipython/tree/main/modules)
 
 ---
 # SYSTEM #
@@ -311,7 +311,7 @@ Call list_params('MODULE') to see parameters of a module
   Values: String: 'GPIO_1..N', 'GPO1..N' - see HW pinout
 
 **HTTP-DATA-MANAGER params**  
-* `http_post_delivery_address` (str): Server address for HTTP POST. Custom application-specific data can be sent by the Sushi-IoT-Framework API  
+* `http_post_delivery_address` (str): Server address for HTTP POST. Custom application-specific data can be sent by the SushiPython API  
   Values: String. Example: 'https://your_web_server/post_data.php'
 * `use_wifi_for_http_post` (int): Use wi-fi before modem for HTTP POST  
   Values: 0=disabled;1=enabled

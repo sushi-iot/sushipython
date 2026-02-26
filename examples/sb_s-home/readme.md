@@ -25,9 +25,9 @@ Home domotics demo project.
 
 **Start guide**
 * Assemble the Sushi Board (see hardware components section).
-* Download and flash the latest [Sushi IoT Firmware](https://github.com/sushi-iot/sushi-iot-framework/releases) onto the board. 
+* Download and flash the latest [Sushi IoT Firmware](https://github.com/sushi-iot/sushipython/releases) onto the board. 
 * Connect the ESP32DevKitC board to your PC by the USB connector (or use WebREPL if you prefer). 
-* If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushi-iot-framework/coding/).    
+* If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushipython/coding/).    
 * Transfer the '.py' project source files (see source files list) to the board using your favourite MicroPython interface.  
 * Edit these settings in "sushi_home_config.py" :
   - "MODEM_ENABLED_NUMBERS" : phone numbers enabled to send/receive SMS
@@ -75,7 +75,7 @@ In a real application, the heater system must be connected to the relay output a
 ### Resources
 
 [Sushi-Iot-Board](https://github.com/sushi-iot/sushi-iot-board)  
-[Sushi IoT Firmware download](https://github.com/sushi-iot/sushi-iot-framework/releases)  
-[Online coding manual](https://sushi-iot.github.io/sushi-iot-framework/coding/)  
-[Sushi IoT project overview](https://sushi-iot.github.io/sushi-iot-framework/)  
-[Sushi IoT Framework microPython quick reference](https://github.com/sushi-iot/sushi-iot-framework/tree/main/examples/sushi-quick-reference.md)  
+[Sushi IoT Firmware download](https://github.com/sushi-iot/sushipython/releases)  
+[Online coding manual](https://sushi-iot.github.io/sushipython/coding/)  
+[Sushi IoT project overview](https://sushi-iot.github.io/sushipython/)  
+[SushiPython IoT Framework microPython quick reference](https://github.com/sushi-iot/sushipython/tree/main/examples/sushi-quick-reference.md)  

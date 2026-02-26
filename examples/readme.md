@@ -1,4 +1,4 @@
-# Sushi IoT Framework microPython examples & projects
+# SushiPython IoT Framework examples & projects
 
 ## Examples & projects for Sushi Board  
 <img src="img/sushi_board_1.png" width=20% >
@@ -37,9 +37,9 @@ In the REPL, run:
 ```python
   sushi.help()
 ```
-or see the result directly [here](https://github.com/sushi-iot/sushi-iot-framework/tree/main/examples/sushi-quick-reference.md).
+or see the result directly [here](https://github.com/sushi-iot/sushipython/tree/main/examples/sushi-quick-reference.md).
 
 ## Resources
-[Firmware download](https://github.com/sushi-iot/sushi-iot-framework/releases)    
-[Online manual](https://sushi-iot.github.io/sushi-iot-framework/coding/)    
-[Sushi IoT project overview](https://sushi-iot.github.io/sushi-iot-framework/)  
+[Firmware download](https://github.com/sushi-iot/sushipython/releases)    
+[Online manual](https://sushi-iot.github.io/sushipython/coding/)    
+[SushiPython IoT project overview](https://sushi-iot.github.io/sushipython/)  

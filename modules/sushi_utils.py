@@ -1,8 +1,11 @@
 # sushi_utils.py
-this_file_version="2026-01-06@1132"
+this_file_version="2026-02-18@1932"
 
 """
 CHANGELOG
+    * "2026-02-18@1932"
+        - print always set_sushi_config result
+        - new function "register_json_config_file"
     * "2026-01-06@1132"
         - help centralized to sushi.help()
     * "2025-12-14@1552"
@@ -12,6 +15,7 @@ CHANGELOG
 import sushi
 import ujson as json  # MicroPython
 import sushi_defs
+
 
 """
 def param_exists(module, param):
@@ -78,6 +82,16 @@ def save_setting(module, setting, value):
 
     return 0  # no change
 
+def register_json_config_file(module_name , file):
+    """
+    Register a JSON configuration file to the web interface
+    Example: sushi.cmd('reg_json_file' , ('mysettings' , 'sb/SUSHI_HOME.json'))
+    """
+    err,res = sushi.cmd('reg_json_file' , (module_name , file))
+    if err == 0:
+        return 1
+    return 0
+
 
 def set_sushi_config(config):    
     err = 0
@@ -89,6 +103,10 @@ def set_sushi_config(config):
     if err == 0:
         if res == 2:
             print("Configuration changed. Restarting...")
+        elif res == 1:
+            print("Configuration changed. No need to restart.")
+        elif res == 0:
+            print("Configuration NOT changed.")
         return res  #return 0 : not changed ; 1 : changed, no restart ; 2 : changed, need restart.
     if type(res) == int and res < 0:
         return res        
@@ -225,6 +243,8 @@ def help():
   Get a system structure
 * `sushi.cmd("send_struct", (type:str ['cfg'=configuration , 'cmd'=command] , data:str [JSON] ))` 
   Send a system structure
+* `sushi.cmd("reg_json_file", (module_name:str , json_file:str ))` 
+  Register a configuration file to the web interface
 
 
 ## USAGE EXAMPLES ##
@@ -267,3 +287,4 @@ if value != None:
 else:
     print("Error")
 """
+

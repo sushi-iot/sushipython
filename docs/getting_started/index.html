@@ -20,7 +20,7 @@
     
     
       
-        <title>Getting started - Sushi IoT Framework</title>
+        <title>Getting started - SushiPython IoT</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started-to-sushi-iot-framework" class="md-skip">
+        <a href="#getting-started-to-sushipython-iot-framework" class="md-skip">
           Skip to content
         </a>
       
@@ -78,7 +78,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Sushi IoT Framework" class="md-header__button md-logo" aria-label="Sushi IoT Framework" data-md-component="logo">
+    <a href=".." title="SushiPython IoT" class="md-header__button md-logo" aria-label="SushiPython IoT" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -92,7 +92,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Sushi IoT Framework
+            SushiPython IoT
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -176,13 +176,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Sushi IoT Framework" class="md-nav__button md-logo" aria-label="Sushi IoT Framework" data-md-component="logo">
+    <a href=".." title="SushiPython IoT" class="md-nav__button md-logo" aria-label="SushiPython IoT" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    Sushi IoT Framework
+    SushiPython IoT
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -450,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="https://github.com/sushi-iot/sushi-iot-framework/releases" class="md-nav__link">
+      <a href="https://github.com/sushi-iot/sushipython/releases" class="md-nav__link">
         
   
   
@@ -472,7 +472,7 @@
   
   
     <li class="md-nav__item">
-      <a href="https://github.com/sushi-iot/sushi-iot-framework/tree/main/examples" class="md-nav__link">
+      <a href="https://github.com/sushi-iot/sushipython/tree/main/examples" class="md-nav__link">
         
   
   
@@ -677,9 +677,9 @@
 
 
 
-<h1 id="getting-started-to-sushi-iot-framework"><strong>Getting started to Sushi IoT Framework</strong></h1>
+<h1 id="getting-started-to-sushipython-iot-framework"><strong>Getting started to SushiPython IoT Framework</strong></h1>
 <h2 id="1-get-the-firmware"><strong>1. Get the firmware</strong></h2>
-<p>In the Sushi-IoT-Framework <a href="https://github.com/sushi-iot/sushi-iot-framework/releases">download page</a> there is a table with all the releases for the supported boards. To get the latest features and fixes, it's recommended to use the latest stable version available.  </p>
+<p>In SushiPython <a href="https://github.com/sushi-iot/sushipython/releases">download page</a> there is a table with all the releases for the supported boards. To get the latest features and fixes, it's recommended to use the latest stable version available.  </p>
 <hr />
 <h2 id="2-flash-the-firmware"><strong>2. Flash the firmware</strong></h2>
 <p>Flashing the firmware can vary depending on the specific board you are using (in that case please check the producer documentation for more details).  </p>
@@ -720,7 +720,7 @@ This is an easier alternative compared to the Python ".py" version of the tool, 
 
 <h4 id="flash-the-firmware-file"><strong>Flash the firmware file</strong></h4>
 <p><code>esptool write_flash 0x0 FIRMWARE.bin</code></p>
-<p>Where "<em>FIRMWARE</em>" is the firmware .bin file that you downloaded. See <a href="https://github.com/sushi-iot/sushi-iot-framework/releases">Sushi-IoT-Framework firmware download</a>.</p>
+<p>Where "<em>FIRMWARE</em>" is the firmware .bin file that you downloaded. See <a href="https://github.com/sushi-iot/sushipython/releases">SushiPython firmware download</a>.</p>
 <h4 id="troubleshooting_1"><strong>Troubleshooting</strong></h4>
 <ul>
 <li><strong>esptool fails to detect the correct COM port</strong>: specify it with the "--port" option in front of the command.</li>
@@ -753,7 +753,7 @@ This is an easier alternative compared to the Python ".py" version of the tool, 
 </ol>
 <p>If everything works, you should see the device boot and the MicroPython REPL:</p>
 <div class="codehilite"><pre><span></span><code>...
-<span class="nv">MicroPython</span><span class="w"> </span><span class="mi">495</span><span class="nv">ce91</span><span class="o">-</span><span class="nv">dirty</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span>...<span class="w"> </span><span class="nv">Sushi</span><span class="w"> </span><span class="nv">firmware</span><span class="w"> </span><span class="nv">framework</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span>...<span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">ESP32</span>
+<span class="nv">MicroPython</span><span class="w"> </span><span class="mi">495</span><span class="nv">ce91</span><span class="o">-</span><span class="nv">dirty</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span>...<span class="w"> </span><span class="nv">SushiPython</span><span class="w"> </span><span class="nv">firmware</span><span class="w"> </span><span class="nv">framework</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span>...<span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="nv">ESP32</span>
 <span class="nv">Type</span><span class="w"> </span><span class="s2">&quot;help()&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">more</span><span class="w"> </span><span class="nv">information</span>.
 <span class="o">&gt;&gt;&gt;</span><span class="w"> </span>
 </code></pre></div>
@@ -775,7 +775,7 @@ By scanning available networks, you should see an SSID like <em>"Sushi-..."</em>
 <li><strong>Password</strong>: "1976"  </li>
 </ul>
 <p>From the web interface, you can adjust the base system settings and OPTIONALLY configure the device to connect to your Wi-Fi network.<br />
-For more details about the Sushi-IoT-Framework web interface, see the <a href="../manual/#system-setup">system setup section</a>.</p>
+For more details about SushiPython web interface, see the <a href="../manual/#system-setup">system setup section</a>.</p>
 <hr />
 <h2 id="4-start-coding"><strong>4. Start coding</strong></h2>
 <p>Once the device is configured, you can start coding with your preferred MicroPython interface.<br />
