@@ -10,8 +10,9 @@ Home domotics demo project.
     - Remote control by SMS
 * Main power loss/return detection
     - Alert by SMS
+* Get status by SMS
 
-**Version** : `v1.0.0 - 2026-01-04`  
+**Version** : `v1.1.0 - 2026-02-280`  
 
 **Video demo** : [Sushi IoT on instagram](https://www.instagram.com/sushi_board_iot/)
 
@@ -19,6 +20,9 @@ Home domotics demo project.
 ### Source files
 * **"sushi_home.py"** : main program script file.
 * **"sushi_home_config.py"** : sushi IoT configuration e project settings
+
+**Optional**
+* **"../common/sushi_board_setup.py"** : board complete system setup reset (see note "SYSTEM SETUP FROM THIS SCRIPT" in "sushi_home_config.py")
 
 ---
 ### Instructions
@@ -29,16 +33,22 @@ Home domotics demo project.
 * Connect the ESP32DevKitC board to your PC by the USB connector (or use WebREPL if you prefer). 
 * If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushipython/coding/).    
 * Transfer the '.py' project source files (see source files list) to the board using your favourite MicroPython interface.  
-* Edit these settings in "sushi_home_config.py" :
-  - "MODEM_ENABLED_NUMBERS" : phone numbers enabled to send/receive SMS
-  - "modem_sim_sms_center" : operator SMS center number (necessary to let the modem manage SMS messages)
-  - "modem_sim_pin" : your SIM pin
-  - "modem_apn" : SIM operator APN
-  - "modem_user" : SIM operator user (if required)
-  - "modem_passwd" : SIM operator password (if required)
 * Run the main script file.
 * From the REPL output it's possible check the script execution output.
 * To interrupt the script execution and return to the REPL prompt press "CTRL+C" (as you can see from the py code to manage all the tasks the script run a main loop).
+
+**Setup**
+* Application specific setting are into file "sb/SUSHI_HOME.json" (self created after the 1st script run):
+    - "modem_enabled_numbers" : List of phone numbers enabled to send/receive SMS.
+* Required system settings (file "sb/SYSTEM.json"):
+  Modem SIM parameters:  
+    - "modem_sim_sms_center" : operator SMS center number (necessary to let the modem manage SMS messages)
+    - "modem_sim_pin" : your SIM pin
+    - "modem_apn" : SIM operator APN
+    - "modem_user" : SIM operator user (if required)
+    - "modem_passwd" : SIM operator password (if required)  
+
+For more details about settings see comments in "sushi_home_config.py" file
 
 **Testing the project**
 
@@ -57,8 +67,11 @@ Home domotics demo project.
 ---
 ### Hardware components
 
-This project uses a full Sushi Iot Board kit.  
-All details on Sushi Board can be found on [Sushi-Iot-Board Github repo](https://github.com/sushi-iot/sushi-iot-board).
+This project uses a Sushi IoT Board PCBA.
+The Sushi Board PCBA just integrates **common commercial modules**; therefore this project can be built even using a breadboard or a custom protoboard.  
+
+* [Sushi Board overview](https://sushi-iot.github.io/sushi-iot-board/)
+* [Sushi-Iot-Board schematic & components](https://github.com/sushi-iot/sushi-iot-board)
 
 ---
 ### Overview
@@ -78,4 +91,4 @@ In a real application, the heater system must be connected to the relay output a
 [Sushi IoT Firmware download](https://github.com/sushi-iot/sushipython/releases)  
 [Online coding manual](https://sushi-iot.github.io/sushipython/coding/)  
 [Sushi IoT project overview](https://sushi-iot.github.io/sushipython/)  
-[SushiPython IoT Framework microPython quick reference](https://github.com/sushi-iot/sushipython/tree/main/examples/sushi-quick-reference.md)  
+[Sushi IoT Framework microPython quick reference](https://github.com/sushi-iot/sushipython/tree/main/examples/sushi-quick-reference.md)  

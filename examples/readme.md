@@ -3,7 +3,10 @@
 ## Examples & projects for Sushi Board  
 <img src="img/sushi_board_1.png" width=20% >
 
-**[Sushi Board DOC](https://sushi-iot.github.io/sushi-iot-board/)**  
+The Sushi Board PCBA integrates **common commercial modules**; therefore, all projects and examples can be built even using a breadboard or a custom protoboard.  
+
+* [Sushi Board overview](https://sushi-iot.github.io/sushi-iot-board/)
+* [Sushi-Iot-Board schematic & components](https://github.com/sushi-iot/sushi-iot-board)
 
 ### Basic examples
 |Name|Description|

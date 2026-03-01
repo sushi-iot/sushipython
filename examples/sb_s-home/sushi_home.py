@@ -1,4 +1,4 @@
-# Sushi Home IoT [v1.0.0 - 2026-01-04]
+# Sushi Home IoT [v1.1.0 - 2026-02-28]
 
 """
 Home domotics demo project.
@@ -11,10 +11,10 @@ Features:
     + Alert by SMS
 """
 # Common global variables
-this_project_ver = "1.0.0[2026-01-04]" # project version
+this_project_ver = "1.1.0[2026-02-28]" # project version
 
 # COMMON IMPORT
-import sushi		# main sushi library
+import sushi		# main sushi libraryt
 import sushi_home_config  # set the system configuration by "s-home_config.py" module
 import sushi_utils
 from sushi_menu import Submenu	# class used to create custom submenus
@@ -26,10 +26,14 @@ import time
 print(f'Sushi Home IoT ver{this_project_ver} starting...')
 thermo = None	# Thermostart class
 power_mon = None    # Power monitor class
+sms = None
 def main():
     thermostat_init()
     power_mon_init()
     modem_init()
+    #DEBUG-
+    sushi.cmd('log',1)
+    ##########
     # main loop
     try:
         while True:
@@ -119,6 +123,7 @@ def thermostat_init():
     if thermo.temperature_target == None:	# assign default target
         print('Temperature target to default')
         thermo.temperature_target = sushi_home_config.THERMO_DEFAULT_TEMPERATURE_TARGET
+        sushi_utils.save_setting("sushi_home", "thermo_temperature_target" , thermo.temperature_target)
 
     print(f'Heater temperature target:{thermo.temperature_target}')
     # Create new submenu added to home menu
@@ -200,6 +205,9 @@ def thermostat_task():
 ##########################################
 # SMS management
 ##########################################
+class sms_man:
+    MODEM_ENABLED_NUMBERS = None
+
 # Parse commands from SMS 
 def modem_parse_sms(text , number):
     send_message = False
@@ -229,7 +237,7 @@ def modem_schedule_sms_send(number):
     # sms_text =  f"Hello ☺ !" #TEST: every unicode symbol works in SMS text: https://www.w3schools.com/charsets/ref_utf_symbols.asp
     print(f'SMS: {sms_text}')
     if number == "*":   # sending SMS to all numbers in list
-        for mynumber in sushi_home_config.MODEM_ENABLED_NUMBERS:
+        for mynumber in sms.MODEM_ENABLED_NUMBERS:
             modem_send_sms(sms_text , mynumber)
     else:    # sending SMS just to "number"
         modem_send_sms(sms_text , number)
@@ -255,7 +263,7 @@ def modem_callback(a):
         text   = a[2]
         time   = a[3]
         print(f'SMS received from "{number}" ; Time : "{time}" ; Text : "{text}"')
-        if number in sushi_home_config.MODEM_ENABLED_NUMBERS:
+        if number in sms.MODEM_ENABLED_NUMBERS:
             modem_parse_sms(text , number)
         else:
             print(f'Number {number} not in enabled array. SMS ignored')
@@ -274,6 +282,16 @@ def modem_callback(a):
 def modem_init():
     # Register callback ---
     sushi.cmd("set_modem_hnd", modem_callback)
+    
+    
+    global sms
+    sms = sms_man()
+    
+    # reading enabled phone numbers
+    sms.MODEM_ENABLED_NUMBERS = sushi_utils.load_setting("sushi_home", "modem_enabled_numbers")
+    if sms.MODEM_ENABLED_NUMBERS == None:
+        print('No SMS enabled numbers')
+        sushi_utils.save_setting("sushi_home", "modem_enabled_numbers" , ["+391111111111" , "+342222222222"])
 
 
 ##########################################
@@ -321,4 +339,5 @@ def get_param(command_str, key):
 # Start program main loop
 ##########################################
 main()
+
 
