@@ -12,7 +12,7 @@ Home domotics demo project.
     - Alert by SMS
 * Get status by SMS
 
-**Version** : `v1.1.0 - 2026-02-280`  
+**Version** : `v1.1.0 - 2026-02-28`  
 
 **Video demo** : [Sushi IoT on instagram](https://www.instagram.com/sushi_board_iot/)
 
@@ -67,8 +67,9 @@ For more details about settings see comments in "sushi_home_config.py" file
 ---
 ### Hardware components
 
-This project uses a Sushi IoT Board PCBA.
-The Sushi Board PCBA just integrates **common commercial modules**; therefore this project can be built even using a breadboard or a custom protoboard.  
+This project uses a Sushi IoT Board PCBA.  
+Since Sushi Board PCBA just connect **common commercial modules** this project can be built even using a breadboard or a custom protoboard.  
+All details about used modules, components & schematics are in Sushi Board doc:  
 
 * [Sushi Board overview](https://sushi-iot.github.io/sushi-iot-board/)
 * [Sushi-Iot-Board schematic & components](https://github.com/sushi-iot/sushi-iot-board)
