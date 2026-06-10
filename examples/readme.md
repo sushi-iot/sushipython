@@ -34,15 +34,7 @@ The Sushi Board PCBA integrates **common commercial modules**; therefore, all pr
 |--------|--------|
 [dkc_menu](dkc_menu)|Add a custom menu (by 'sushi_menu' module) to user interface to switch ON/OFF a relay OUTPUT
 
----
-## Quick reference
-In the REPL, run:
-```python
-  sushi.help()
-```
-or see the result directly [here](https://github.com/sushi-iot/sushipython/tree/main/examples/sushi-quick-reference.md).
-
 ## Resources
 [Firmware download](https://github.com/sushi-iot/sushipython/releases)    
-[Online manual](https://sushi-iot.github.io/sushipython/coding/)    
+[Online manual](https://sushi-iot.github.io/sushipython/manual)    
 [SushiPython IoT project overview](https://sushi-iot.github.io/sushipython/)  

@@ -8,4 +8,3 @@ It's possible extend/edit these modules just loading the modified .py file into 
 
 * `sushi_menu.py` : User menu management  
 * `sushi_utils.py` : System setup, status & utilities  
-* `sushi_defs.py` : Not a module itself. Contains definitions used by `sushi_utils` module

@@ -31,8 +31,8 @@ def main():
     thermostat_init()
     power_mon_init()
     modem_init()
-    #DEBUG-
-    sushi.cmd('log',1)
+    #DEBUG
+    #sushi.cmd('log',1)
     ##########
     # main loop
     try:

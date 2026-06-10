@@ -302,6 +302,8 @@ Call list_params('MODULE') to see parameters of a module
   Values: String: '<entry_info_1>*<entry_info_2>*...'
 * `system_info_send_http_post_frequency_min` (int): HTTP POST system info frequency (minutes). Posts are sent to http_post_delivery_address.  
   Values: 0=never;N=minutes
+* `http_post_delivery_address` (str): Server address for HTTP POST. Custom application-specific data can be sent by the Sushi-IoT-Framework API  
+  Values: String. Example: 'https://your_web_server/post_data.php'
 
 **SYSTEM-INTERFACE params**  
 * `wifi_status_led` (str): Assign wi-fi status to an external LED  
@@ -310,12 +312,6 @@ Call list_params('MODULE') to see parameters of a module
   Values: String: 'GPIO_1..N', 'GPO_1..N' - see HW pinout
 * `modem_status_led` (str): Assign modem status to an external LED  
   Values: String: 'GPIO_1..N', 'GPO1..N' - see HW pinout
-
-**HTTP-DATA-MANAGER params**  
-* `http_post_delivery_address` (str): Server address for HTTP POST. Custom application-specific data can be sent by the Sushi-IoT-Framework API  
-  Values: String. Example: 'https://your_web_server/post_data.php'
-* `use_wifi_for_http_post` (int): Use wi-fi before modem for HTTP POST  
-  Values: 0=disabled;1=enabled
 
 **MODEM params**  
 * `modem_enable` (int): Enable modem management  

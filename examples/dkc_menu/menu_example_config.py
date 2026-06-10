@@ -34,7 +34,6 @@ sushi_settings={
         "powersave_time_wifi_off_min": 0,
         "http_post_delivery_address": "",
         "ntp_server_address": "pool.ntp.org",
-        "use_wifi_for_http_post": 1,
         "debug_mode": 0
 },
     # System settings help: call "sushi_utils.list_params('wifi')"

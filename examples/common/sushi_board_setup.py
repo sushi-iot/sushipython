@@ -51,7 +51,6 @@ sushi_board_system_settings={
         "powersave_time_wifi_off_min": 0, # Auto wi-fi power-off after inactivity (minutes). Disabled.
         "http_post_delivery_address": "",   # Server address for status HTTP POST every system_info_send_http_post_frequency_min. Disabled.
         "ntp_server_address": "pool.ntp.org", # ntp server for time-synch
-        "use_wifi_for_http_post": 1, # when sending http POST data,  before use the modem (4G) if available try use wi-fi.
         "debug_mode": 0 # reserved DEBUG functions (disabled)
 },
     # Wifi settings

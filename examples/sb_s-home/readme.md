@@ -31,7 +31,7 @@ Home domotics demo project.
 * Assemble the Sushi Board (see hardware components section).
 * Download and flash the latest [Sushi IoT Firmware](https://github.com/sushi-iot/sushipython/releases) onto the board. 
 * Connect the ESP32DevKitC board to your PC by the USB connector (or use WebREPL if you prefer). 
-* If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushipython/coding/).    
+* If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushipython/manual#micropython-introduction/).    
 * Transfer the '.py' project source files (see source files list) to the board using your favourite MicroPython interface.  
 * Run the main script file.
 * From the REPL output it's possible check the script execution output.
@@ -90,6 +90,6 @@ In a real application, the heater system must be connected to the relay output a
 
 [Sushi-Iot-Board](https://github.com/sushi-iot/sushi-iot-board)  
 [Sushi IoT Firmware download](https://github.com/sushi-iot/sushipython/releases)  
-[Online coding manual](https://sushi-iot.github.io/sushipython/coding/)  
+[Online coding manual](https://sushi-iot.github.io/sushipython/manual#micropython-introduction/)  
 [Sushi IoT project overview](https://sushi-iot.github.io/sushipython/)  
 [Sushi IoT Framework microPython quick reference](https://github.com/sushi-iot/sushipython/tree/main/examples/sushi-quick-reference.md)  

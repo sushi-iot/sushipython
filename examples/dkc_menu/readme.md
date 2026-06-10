@@ -16,7 +16,7 @@
 * Connect the components on the breadboard.
 * Download and flash the [SushiPython IoT Firmware](https://github.com/sushi-iot/sushipython/releases) onto the board. 
 * Connect ESP32DevKitC to your PC by the USB connector (or use WebREPL if you prefer). 
-* If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushipython/coding/).    
+* If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushipython/manual#micropython-introduction/).    
 * Transfer the '.py' example source files to the board using your favourite MicroPython interface.  
 * Run the main script file. Note that it's normal on the first run (and in general, if the device configuration has changed): the device will store the settings and restart itself.
 
@@ -65,12 +65,5 @@ All components can be found widely on the web, so just as example it's provided 
 
 ### Resources
 [SushiPython IoT Firmware download](https://github.com/sushi-iot/sushipython/releases)  
-[Online coding manual](https://sushi-iot.github.io/sushipython/coding/)  
+[Online manual](https://sushi-iot.github.io/sushipython/manual)    
 [SushiPython IoT project overview](https://sushi-iot.github.io/sushipython/)  
-
-**Quick reference**  
-In the REPL, run:
-```python
-  sushi.help()
-```
-or see the result directly [here](https://github.com/sushi-iot/sushipython/tree/main/examples/sushi-quick-reference.md).
