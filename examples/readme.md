@@ -1,5 +1,11 @@
 # SushiPython IoT Framework examples & projects
 
+## Resources
+[Quick uPy code examples](https://sushi-iot.github.io/sushipython/manual/#examples)
+[Firmware download](https://github.com/sushi-iot/sushipython/releases)    
+[Online manual](https://sushi-iot.github.io/sushipython/manual)    
+[SushiPython IoT project overview](https://sushi-iot.github.io/sushipython/)  
+
 ## Examples & projects for Sushi Board  
 <img src="img/sushi_board_1.png" width=20% >
 
@@ -34,7 +40,3 @@ The Sushi Board PCBA integrates **common commercial modules**; therefore, all pr
 |--------|--------|
 [dkc_menu](dkc_menu)|Add a custom menu (by 'sushi_menu' module) to user interface to switch ON/OFF a relay OUTPUT
 
-## Resources
-[Firmware download](https://github.com/sushi-iot/sushipython/releases)    
-[Online manual](https://sushi-iot.github.io/sushipython/manual)    
-[SushiPython IoT project overview](https://sushi-iot.github.io/sushipython/)  
