@@ -1060,15 +1060,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#manage-relays-via-a-custom-menu" class="md-nav__link">
-    <span class="md-ellipsis">
-      Manage relays via a custom menu
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1490,6 +1481,7 @@ Basically the following submenus are present:</p>
 <p>Configuration parameters: <em>keyboard_enable</em>, <em>lcd_enable</em>, <em>ioex_enable</em>.</p>
 <p>The standard menu management uses a 4 buttons keyboard (<em>keyboard_enable</em> = 4) to navigate: <em>NEXT</em>, <em>PREVIOUS</em>, <em>BACK</em>, <em>ENTER</em>.</p>
 <p>The menu can be extended with application specific submenus by <a href="#sushipython-upy-interface">SushiPython uPy interface</a>.</p>
+<p><img alt="Custom menu 2" src="../img/menu-integration-2.png" /></p>
 <hr />
 <h3 id="modem-management"><strong>Modem management</strong></h3>
 <p>Modem management component:</p>
@@ -1696,7 +1688,7 @@ For example, with just a few lines of code you can:</p>
 </ul>
 <hr />
 <h3 id="module-types">MODULE TYPES</h3>
-<p>SushyPython uPy interface is composed by a <code>core module</code> (C code that is part of the firmware) and some <code>frozen modules</code> (MicroPython .py files embedded into the firmware).</p>
+<p>SushiPython uPy interface is composed by a <code>core module</code> (C code that is part of the firmware) and some <code>frozen modules</code> (MicroPython .py files embedded into the firmware).</p>
 <p><strong>CORE MODULE</strong>  </p>
 <ul>
 <li><code>sushi</code> is the core module.  </li>
@@ -2092,18 +2084,6 @@ Set a pin as GPIO with a logic a name. </p>
 <span class="n">settings_menu</span><span class="o">.</span><span class="n">add_enum_editable_item</span><span class="p">(</span><span class="s2">&quot;Relay Status&quot;</span><span class="p">,</span> <span class="n">on_relay_toggle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span> <span class="s2">&quot;ON&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-<h5 id="manage-relays-via-a-custom-menu"><strong>Manage relays via a custom menu</strong></h5>
-<!--
-<iframe width="560" height="315"
-  src="https://www.youtube.com/embed/533TxYh5Vzw"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
--->
-
-<p><img alt="Custom menu 1" src="../img/menu-integration-1.png" />
-<img alt="Custom menu 2" src="../img/menu-integration-2.png" /></p>
 <h4 id="projects-examples">Projects &amp; examples</h4>
 <p><strong><a href="https://github.com/sushi-iot/sushipython/tree/main/examples">See here all SushiPython MicroPython examples</a></strong></p>
 <hr />
