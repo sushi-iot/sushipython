@@ -591,6 +591,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#firmware-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firmware update
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1445,6 +1454,12 @@ This configuration file can be saved or loaded from the web UI using the control
 <li>If you lose Wi-Fi connection and just need to access the web UI, you can force AP mode by pressing the dedicated onboard button (see <a href="#wi-fi-management">Wi-Fi extra functions</a>).  </li>
 <li>A full factory restore can be performed by sending a command from the MicroPython REPL, see <a href="#sushipython-upy-interface">SushiPython uPy interface</a>.  </li>
 </ul>
+<h4 id="firmware-update"><strong>Firmware update</strong></h4>
+<p>Firmware update can be performed in 2 ways:</p>
+<ul>
+<li>By web interface: in the SETUP section, use "Fimware update" controls to select an send the new firmware.  IMPORTANT: to update the firmware in this way you must use the "ota" version of the firmware ".bin" file.</li>
+<li>By USB : see the getting started guide <a href="#2-flash-the-firmware">how flash the firmware by USB connection</a>.</li>
+</ul>
 <hr />
 <h3 id="log-and-events"><strong>Log and Events</strong></h3>
 <p>System log and events can be useful to monitor &amp; debug the system working. 
@@ -1761,15 +1776,7 @@ Set configuration parameters (self restart if settings changed).  </p>
 <li><code>settings</code> : dict structure with the settings</li>
 <li><code>result</code>(return):  0 = value not changed ; 1 = value changed no restart ; 2 = value changed need restart; &lt; 0 = error.</li>
 </ul>
-<!-- REMOVED
-**`sushi_utils.list_params(module:str) -> list:printed_text`**  
-List the available configuration params. See [PARAMETERS APPENDIX](#parameters-reference).
-
-* `module` : module name 
->- `'system'` : [system module]
->- `'wifi'`: wifi module
--->
-
+<p><a href="https://github.com/sushi-iot/sushipython/blob/main/examples/common/sushi_board_setup.py"><em>Example code</em></a></p>
 <p><strong><code>sushi_utils.get_sushi_status() -&gt; status:dict</code></strong><br />
 Return full status structure</p>
 <p><strong><code>sushi_utils.load_setting(module:str, setting:str)  -&gt; value:str or int</code></strong><br />

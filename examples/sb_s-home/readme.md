@@ -12,17 +12,13 @@ Home domotics demo project.
     - Alert by SMS
 * Get status by SMS
 
-**Version** : `v1.1.0 - 2026-02-28`  
+**Version** : `v1.1.2 - 2026-06-21`  
 
 **Video demo** : [Sushi IoT on instagram](https://www.instagram.com/sushi_board_iot/)
 
 ---
 ### Source files
 * **"sushi_home.py"** : main program script file.
-* **"sushi_home_config.py"** : sushi IoT configuration e project settings
-
-**Optional**
-* **"../common/sushi_board_setup.py"** : board complete system setup reset (see note "SYSTEM SETUP FROM THIS SCRIPT" in "sushi_home_config.py")
 
 ---
 ### Instructions
@@ -31,8 +27,8 @@ Home domotics demo project.
 * Assemble the Sushi Board (see hardware components section).
 * Download and flash the latest [Sushi IoT Firmware](https://github.com/sushi-iot/sushipython/releases) onto the board. 
 * Connect the ESP32DevKitC board to your PC by the USB connector (or use WebREPL if you prefer). 
-* If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushipython/manual#micropython-introduction/).    
-* Transfer the '.py' project source files (see source files list) to the board using your favourite MicroPython interface.  
+* If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushipython/manual#micropython-introduction).    
+* Transfer the '.py' project source file to the board using your favourite MicroPython interface.  
 * Run the main script file.
 * From the REPL output it's possible check the script execution output.
 * To interrupt the script execution and return to the REPL prompt press "CTRL+C" (as you can see from the py code to manage all the tasks the script run a main loop).

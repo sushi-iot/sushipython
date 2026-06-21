@@ -1,5 +1,5 @@
 # sushi_board_setup.py
-this_file_version="2026-02-18@1935"
+this_file_version="2026-06-21@1857"
 
 import sushi
 import sushi_utils
@@ -8,9 +8,7 @@ import sushi_utils
 # SUSHI BOARD CONFIGURATION PROFILE
 ##########################################################
 
-# Settings & pinout online help: https://github.com/sushi-iot/sushi-iot-framework/blob/main/examples/sushi-quick-reference.md
-# Setting & pinout REPL help: "sushi_utils.list_params('system')" ; "sushi_utils.list_params('wifi')"
-# Setup can be done by microPython with this file or by web UI (JSON file or interface)
+# Setting & pinout: "https://sushi-iot.github.io/sushipython/manual/#setup-parameters"
 
 sushi_board_system_settings={
     # System settings
@@ -67,11 +65,12 @@ sushi_board_system_settings={
 #         "ap_passwd": "",	# access point password
 #         "ap_channel": 3,	# access point channel
         #client settings (if wifi_mode = 1)
-#         "cli_ssid": "PingoPallino",
-#         "cli_passwd": "HelloVera2012",
+#         "cli_ssid": "NetworkSSID",
+#         "cli_passwd": "NetworkPassword",
 #         "cli_dhcp_enable": 0,
 #         "cli_dns_address": "8.8.8.8"
     }
 }
 
-
+# https://sushi-iot.github.io/sushipython/manual/#setup-and-status
+sushi_utils.set_sushi_config(sushi_board_system_settings) #return: 0 = configuration not changed ; 1 = changed no need to restart ; 2 = changed and need to restart

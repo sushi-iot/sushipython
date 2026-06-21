@@ -1,4 +1,4 @@
-# Sushi Home IoT [v1.1.0 - 2026-02-28]
+# Sushi Home IoT [v1.1.2 - 2026-06-21]
 
 """
 Home domotics demo project.
@@ -10,29 +10,100 @@ Features:
 * Main power loss detection
     + Alert by SMS
 """
-# Common global variables
-this_project_ver = "1.1.0[2026-02-28]" # project version
 
+######################################
+# SETTINGS & CONFIGURATION
+######################################
+# APPLICATION SETTINGS 
+'''
+The file "sb/SUSHI_HOME.json" (self created after the 1st run) contains the application specific settings:
+
+{
+    "modem_enabled_numbers": ["+391111111111", "+342222222222"],	# List of phone numbers enabled to send/receive SMS.
+    "thermo_temperature_target": 10									# Target temperature (no need to edit here, normally set by SMS or UI).
+}
+'''
+
+# SUSHIPYTHON SYSTEM SETTINGS
+'''
+System setting are stored into "sb/SYSTEM.json", and can be set in 3 ways:
+* editing the system setting file "sb/SYSTEM.json".
+* by web page (if board is connected to wifi) sending a JSON file or by the user interface.
+* with micropython call "sushi_utils.set_sushi_config(...)" that sets certain setting to "sb/SYSTEM.json"
+
+Important settings for this script are:
+* System
+    - "modem_enable": 1  (# 0=none;<>0 = modem model)
+* Modem SIM setting:
+    - "modem_sim_sms_center" : operator SMS center number (necessary to let the modem manage SMS messages)
+    - "modem_sim_pin" : your SIM pin
+    - "modem_apn" : SIM operator APN
+    - "modem_user" : SIM operator user (if required)
+    - "modem_passwd" : SIM operator password (if required)
+'''
+
+# WI-FI SETTINGS (optional)
+'''
+Wifi settings normally must be changed by the web interface. 
+For testing purpose can be hardcoded and set by "sushi_utils.set_sushi_config(...)"
+
+If wifi settings are unknown it's possible force access point mode (no password) pressing the board button for about 15 seconds.
+Then connecting to the web page it's possible change the wi-fi settings for example to connect to a certain network.
+The default web page user/password are "root"/"1976"
+'''
+
+
+##########################################
+# Common global variables
+##########################################
+this_project_ver = "1.1.2[2026-06-21]" # project version
+thermo = None	# Thermostart class
+power_mon = None    # Power monitor class
+sms = None
+
+##########################################
 # COMMON IMPORT
+##########################################
 import sushi		# main sushi libraryt
-import sushi_home_config  # set the system configuration by "s-home_config.py" module
 import sushi_utils
 from sushi_menu import Submenu	# class used to create custom submenus
 import time
 
+
+######################################
+# FIXED PARAMETERS
+######################################
+
+# THERMOSTAT
+THERMO_TASK_FREQUENCY_SEC = 15		#run thermostat task every this time
+THERMO_DEFAULT_TEMPERATURE_TARGET = 10
+THERMO_DEFAULT_TEMPERATURE_MIN = 5		#min temperature
+THERMO_DEFAULT_TEMPERATURE_MAX = 35		#max temperature
+THERMO_DEFAULT_TEMPERATURE_STEP = 0.5	#step while editing
+THERMO_RELAY_OUT_PIN = 15	# ESP32 GPIO 15
+THERMO_MIN_ON_OFF_TIME_SEC = 15		#Min time between ON/OFF changes to avoid relay stress under every condition
+THERMO_TEMPERATURE_SENSOR = 0	# [0=DS18B20-1,1=DS18B20-2]
+THERMO_SMS_CMD_NEW_TEMP = "#SET-TEMP"
+
+# Main power monitor
+POWER_MON_TASK_FREQUENCY_SEC=5          # time between power status check
+POWER_MON_CMD_GET_STATUS = "#STATUS?"   # SMS text to ask for status
+POWER_MON_NUM_CONFIRM_BEFORE_SMS=3		# number of check with state stable before send aler SMS
+
+# SMS MANAGEMENT
+SMS_TIME_SLOT_SEC=3600				#1 hour
+SMS_NUM_MAX_IN_TIME_SLOT=10			#max 10 SMS/hour
+
 ##########################################
 # Tasks init and main loop
 ##########################################
-print(f'Sushi Home IoT ver{this_project_ver} starting...')
-thermo = None	# Thermostart class
-power_mon = None    # Power monitor class
-sms = None
 def main():
     thermostat_init()
     power_mon_init()
     modem_init()
     #DEBUG
-    #sushi.cmd('log',1)
+    # sushi.cmd('set_log',1)
+    beep(500)
     ##########
     # main loop
     try:
@@ -51,6 +122,7 @@ class power_mon_status:
     time_last_task_run_ms = 0
     voltage = None
     state = None
+    num_times_stable_before_alert = 0
 
 # Init power monitor
 def power_mon_init():
@@ -78,13 +150,13 @@ def power_mon_get_voltage():
 # parse commands from SMS
 def power_mon_parse_sms_commands(text):
     # check if the SMS text contain the command to request status info
-    return get_param(text, sushi_home_config.POWER_MON_CMD_GET_STATUS)
+    return get_param(text, POWER_MON_CMD_GET_STATUS)
     
 
 # Power monitor task
 def power_mon_task():
     now_ms = time.ticks_ms()
-    if power_mon.time_last_task_run_ms != 0 and time.ticks_diff(now_ms, power_mon.time_last_task_run_ms) < sushi_home_config.POWER_MON_TASK_FREQUENCY_SEC*1000:
+    if power_mon.time_last_task_run_ms != 0 and time.ticks_diff(now_ms, power_mon.time_last_task_run_ms) < POWER_MON_TASK_FREQUENCY_SEC*1000:
         return # task executed every POWER_MON_TASK_FREQUENCY_SEC seconds
     # read voltage
     power_mon.voltage = power_mon_get_voltage()
@@ -92,14 +164,18 @@ def power_mon_task():
     new_state = power_mon_get_state()
     # print(f"Main power voltage: {power_mon.voltage}. State: {new_state}") #DEBUG
     if new_state != power_mon.state:
-        if power_mon.state != None:		#if None just started -> send SMS
-            print(f"Main power state changed to {new_state}")
-            power_mon.state = new_state
-            modem_schedule_sms_send("*")    # "*" mean to every number in MODEM_ENABLED_NUMBERS
+        if power_mon.state != None:		#if None just started
+            power_mon.num_times_stable_before_alert += 1
+            if power_mon.num_times_stable_before_alert >= POWER_MON_NUM_CONFIRM_BEFORE_SMS:# need input stable for N reads before send SMS
+                print(f"Main power state changed to {new_state}")
+                power_mon.state = new_state
+                modem_schedule_sms_send("*")    # "*" mean to every number in MODEM_ENABLED_NUMBERS
         else:	#program just started -> the power state is unknown
             print(f"Main power state is {new_state}")
             power_mon.state = new_state
-
+    else:
+        power_mon.num_times_stable_before_alert = 0
+        
     # update task task execution time
     power_mon.time_last_task_run_ms = now_ms
 
@@ -122,7 +198,7 @@ def thermostat_init():
     thermo.temperature_target = sushi_utils.load_setting("sushi_home", "thermo_temperature_target")
     if thermo.temperature_target == None:	# assign default target
         print('Temperature target to default')
-        thermo.temperature_target = sushi_home_config.THERMO_DEFAULT_TEMPERATURE_TARGET
+        thermo.temperature_target = THERMO_DEFAULT_TEMPERATURE_TARGET
         sushi_utils.save_setting("sushi_home", "thermo_temperature_target" , thermo.temperature_target)
 
     print(f'Heater temperature target:{thermo.temperature_target}')
@@ -133,13 +209,13 @@ def thermostat_init():
     thermo.temperature_entry_id = thermo.ui_menu.add_float_editable_item(   "Temperature" ,        # menu title
                             menu_thermo_onchange_callback ,                                     # callback when value change
                             thermo.temperature_target , 										# starting value
-                            sushi_home_config.THERMO_DEFAULT_TEMPERATURE_MIN,                   # min value
-                            sushi_home_config.THERMO_DEFAULT_TEMPERATURE_MAX,                   # max value
-                            sushi_home_config.THERMO_DEFAULT_TEMPERATURE_STEP)                  # step value
+                            THERMO_DEFAULT_TEMPERATURE_MIN,                   # min value
+                            THERMO_DEFAULT_TEMPERATURE_MAX,                   # max value
+                            THERMO_DEFAULT_TEMPERATURE_STEP)                  # step value
     
     # define the pin to control the relay
     from machine import Pin
-    thermo.relay = Pin(sushi_home_config.THERMO_RELAY_OUT_PIN, Pin.OUT) # Sushi board relay 1 out
+    thermo.relay = Pin(THERMO_RELAY_OUT_PIN, Pin.OUT) # Sushi board relay 1 out
     thermo.relay.value(0)  # Init relay OFF
     
 # Callback called when the temperature from user menu change
@@ -152,7 +228,7 @@ def menu_thermo_onchange_callback(node , new_temperature):
 
 # read temperature sensor
 def read_temperature():
-    res = sushi.cmd("read_temperature", sushi_home_config.THERMO_TEMPERATURE_SENSOR)
+    res = sushi.cmd("read_temperature", THERMO_TEMPERATURE_SENSOR)
     if res[0] == 0:
         return res[1]
     return None
@@ -160,7 +236,7 @@ def read_temperature():
 # parse commands from SMS
 def thermo_parse_sms_commands(text):
     # check if the SMS text contain the command to set the temperature target
-    new_temperature = get_param(text, sushi_home_config.THERMO_SMS_CMD_NEW_TEMP)
+    new_temperature = get_param(text, THERMO_SMS_CMD_NEW_TEMP)
     if new_temperature != None: 
         print(f'New target temperature:{new_temperature }')
         thermo.temperature_target = float(new_temperature)
@@ -173,7 +249,7 @@ def thermo_parse_sms_commands(text):
 # thermostat management task (run from main loop)
 def thermostat_task():
     now_ms = time.ticks_ms()
-    if thermo.time_last_task_run_ms != 0 and time.ticks_diff(now_ms, thermo.time_last_task_run_ms) < sushi_home_config.THERMO_TASK_FREQUENCY_SEC*1000:
+    if thermo.time_last_task_run_ms != 0 and time.ticks_diff(now_ms, thermo.time_last_task_run_ms) < THERMO_TASK_FREQUENCY_SEC*1000:
         return # task executed every THERMO_TASK_FREQUENCY_SEC seconds
     
     # check temperature to define relay state
@@ -191,7 +267,7 @@ def thermostat_task():
         print(f'Enviroment temperature: {temperature}.')
         thermo.temperature_actual = temperature
     # update relay output (min THERMO_MIN_ON_OFF_TIME_SEC seconds between every change)
-    if relay_state != thermo.relay.value() and time.ticks_diff(now_ms, thermo.time_last_state_change) > sushi_home_config.THERMO_MIN_ON_OFF_TIME_SEC*1000:
+    if relay_state != thermo.relay.value() and time.ticks_diff(now_ms, thermo.time_last_state_change) > THERMO_MIN_ON_OFF_TIME_SEC*1000:
         thermo.time_last_state_change = now_ms
         thermo.relay.value(relay_state)
         print(f'Relay state changed to {relay_state}.')
@@ -207,7 +283,10 @@ def thermostat_task():
 ##########################################
 class sms_man:
     MODEM_ENABLED_NUMBERS = None
-
+    stop_any_sms = False		# DEBUG
+    num_sms_in_time_slot = SMS_NUM_MAX_IN_TIME_SLOT
+    actual_time_slot = 0
+    
 # Parse commands from SMS 
 def modem_parse_sms(text , number):
     send_message = False
@@ -217,6 +296,12 @@ def modem_parse_sms(text , number):
     # check status request command
     if power_mon_parse_sms_commands(text):
         send_message = True
+    
+    # check debug command to stop any SMS
+    stop_any_sms = get_param(text, "#STOP_SMS")
+    if stop_any_sms != None:
+        sms.stop_any_sms = int(stop_any_sms)
+        print(f'SMS STOP: {sms.stop_any_sms}')
 
     if send_message:
         modem_schedule_sms_send(number) # send the message
@@ -241,12 +326,38 @@ def modem_schedule_sms_send(number):
             modem_send_sms(sms_text , mynumber)
     else:    # sending SMS just to "number"
         modem_send_sms(sms_text , number)
+    #DEBUG :sound beep at every SMS send
+    beep(1000)
+
+# check SMS limitation rules
+def can_send_sms():
+    # command by SMS to disable any SMS send
+    if sms.stop_any_sms > 0:
+        print(f'SMS sending disabled')
+        return False
+    # limitation in num. max SMS in a certain time slot
+    actual_time_slot = int(time.ticks_ms() / ((SMS_TIME_SLOT_SEC)*1000))
+    if actual_time_slot != sms.actual_time_slot:
+        sms.actual_time_slot = actual_time_slot
+        print(f'SMS time slot changed:{sms.actual_time_slot}')
+        sms.num_sms_in_time_slot = SMS_NUM_MAX_IN_TIME_SLOT
+    
+    if sms.num_sms_in_time_slot <= 0:
+        print(f'Cannot send more SMS in this time slot')
+        return False
+    sms.num_sms_in_time_slot -= 1
+    return True
+
 
 # Send SMS
 def modem_send_sms(text , number):
-    print(f'Sending sms to {number} : {text}')
+    if can_send_sms() == False:
+        return False
     
+    print(f'Sending sms to {number} : {text}')
     res = sushi.cmd("send_sms", (text, number)) # sushi command to send the SMS
+    return False
+
     if res[0] == 0:
         print("SMS command accepted, ID:", res[1])
         return True
@@ -290,8 +401,9 @@ def modem_init():
     # reading enabled phone numbers
     sms.MODEM_ENABLED_NUMBERS = sushi_utils.load_setting("sushi_home", "modem_enabled_numbers")
     if sms.MODEM_ENABLED_NUMBERS == None:
-        print('No SMS enabled numbers')
+        print('Waring: No SMS enabled numbers')
         sushi_utils.save_setting("sushi_home", "modem_enabled_numbers" , ["+391111111111" , "+342222222222"])
+        sms.MODEM_ENABLED_NUMBERS = []
 
 
 ##########################################
@@ -335,9 +447,19 @@ def get_param(command_str, key):
     # 4. No Match Found
     return None
 
+# sound beep
+def beep(duration_ms):
+    from machine import Pin
+    buzzer_out = Pin(25, Pin.OUT) # Sushi board relay 1 out
+    buzzer_out.value(1)  # Init relay ON
+    time.sleep_ms(duration_ms)
+    buzzer_out.value(0)  # Init relay OFF
+    
 ##########################################
 # Start program main loop
 ##########################################
+print(f'Sushi Home IoT ver{this_project_ver} starting...')
 main()
+
 
 
