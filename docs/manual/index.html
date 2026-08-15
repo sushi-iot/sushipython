@@ -1413,8 +1413,30 @@ See <a href="#web-server">SushiPython uPy WEBSERVER interface</a>.</p>
 <h3 id="web-interface"><strong>Web interface</strong></h3>
 <p>The user web interface is divided into the following sections:</p>
 <ul>
-<li><strong>SETTINGS</strong>: contains all system settings, maintenance tools and firmware update interface.</li>
-<li><strong>STATUS</strong>: displays system information  </li>
+<li><strong>SETTINGS</strong>: contains all system settings, maintenance tools and firmware update interface.<blockquote>
+<ul>
+<li>System, Modem, Wi-fi configuration user interface</li>
+<li>Firmware update</li>
+<li>Password management</li>
+<li>Store and load full configuration by JSON file</li>
+<li>System tools</li>
+<li>File manager: let manage MicroPython scripts and all files by the web-interface without connect to REPL</li>
+<li>Get full configuration in JSON format</li>
+</ul>
+</blockquote>
+</li>
+<li><strong>STATUS</strong>: displays system information  <blockquote>
+<ul>
+<li>System info</li>
+<li>Versions</li>
+<li>Network status and detected Wi-fi</li>
+<li>Modem status</li>
+<li>Show runtime system LOG</li>
+<li>Show event LOG (stored to flash)</li>
+<li>Get full status in JSON format</li>
+</ul>
+</blockquote>
+</li>
 </ul>
 <p>Access is protected by user levels with 3 profiles. HTTPS is supported (default is HTTP).  </p>
 <p><strong>Default users</strong></p>
@@ -1441,6 +1463,35 @@ See <a href="#web-server">SushiPython uPy WEBSERVER interface</a>.</p>
 <td><em>root</em></td>
 <td>Full read-write access including system updates</td>
 <td>"1976"</td>
+</tr>
+</tbody>
+</table>
+<p>Some print screen</p>
+<table>
+<thead>
+<tr>
+<th>Setup</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Setup" src="../img/ui-setup.png" /></td>
+<td><img alt="status" src="../img/ui-status.png" /></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>File manager</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="File manager" src="../img/ui-fm.png" /></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1472,8 +1523,17 @@ Logs are cleared at every system restart while events are stored into a file. Th
 <li>Read the battery level and main power supply status. Require to connect battery and power to 2 ADC input with proper external resistor divider. For pinout details see <a href="https://sushi-iot.github.io/sushi-iot-board/hardware">Sushi-board</a> or your board hardware pinout. Configuration parameter: <em>battery_enable</em></li>
 <li>Trace to log the system status (configuration parameter <em>system_info_log_frequency_min</em>).</li>
 <li>Store to file the system status (configuration parameters <em>system_info_store_frequency_min</em> and <em>system_info_csv_filter</em>).</li>
-<li>Send remotely the device status by http POST. Useful for example to monitor remotely an IoT device. This function requires setting the parameters <em>system_info_send_http_post_frequency_min</em> (frequency) and <em>http_post_delivery_address</em> (destination). </li>
-<li>Manage status LEDs. Let monitor the status by LEDs connected to the device.  <blockquote>
+<li>
+<p>Send remotely the device status by http POST. Useful for example to monitor remotely an IoT device. This function requires setting the parameters <em>system_info_send_http_post_frequency_min</em> (frequency) and <em>http_post_delivery_address</em> (destination). If this function is enabled, the system status (that can include even MicroPython application specific modules) is sent remotely in JSON format, with an http POST like:</p>
+<blockquote>
+<p>http://<em>http_post_delivery_address</em>&gt;?CONTENT=SYSTEM_STATUS&amp;MAC=<em>DEVICE_MAC_ADD</em>&amp;DT=<em>date_time</em>&amp;TS=<em>system_ticks</em>   </p>
+<p><strong>Example</strong>: "http://www.your_site.net/post_data.php?CONTENT=SYSTEM_STATUS&amp;MAC=94B97EE68D9C&amp;DT=14-08-2026@16-33-58&amp;TS=9002301"</p>
+<p><strong>Payload</strong>: full status in JSON format  </p>
+</blockquote>
+</li>
+<li>
+<p>Manage status LEDs. Let monitor the status by LEDs connected to the device.  </p>
+<blockquote>
 <ul>
 <li>System status: function enabled by <em>system_status_led</em> parameter. 1 slow blink indicates OK, otherwise it's an error state. <!-- UPG:led codes details  --></li>
 <li>Wi-Fi status: function enabled by <em>wifi_status_led</em> parameter. 1 slow blink indicates client connected; quick continuous blink indicates access point mode; otherwise it's an error state. <!-- UPG:led codes details  --></li>
@@ -1521,9 +1581,16 @@ Basically the following submenus are present:</p>
 <hr />
 <h2 id="getting-started-to-sushipython"><strong>Getting started to SushiPython</strong></h2>
 <h3 id="1-get-the-firmware"><strong>1. Get the firmware</strong></h3>
-<p>In SushiPython <a href="https://github.com/sushi-iot/sushipython/releases">download page</a> there is a table with all the releases for the supported boards. To get the latest features and fixes, it's recommended to use the latest stable version available.  </p>
+<p>In SushiPython <a href="https://github.com/sushi-iot/sushipython/releases">download page</a> there is a table with all the releases for the supported boards. To get the latest features and fixes, it's recommended to use the latest stable version available.<br />
+The are always 2 versions:</p>
+<ul>
+<li><strong>sushipython-vXX.XX.XX.X-ota.bin</strong> : file to be used to update from web interface, best choice and possible if a previous version of <em>SushiPython</em> is already installed.</li>
+<li><strong>sushipython-vXX.XX.XX.X-flash.bin</strong> : file to be flash by USB connector.</li>
+</ul>
 <hr />
 <h3 id="2-flash-the-firmware"><strong>2. Flash the firmware</strong></h3>
+<p>If a previous version of <em>SushiPython</em> is already installed on the board you can upgrade the firmware by the web-interface (ota version). </p>
+<p>At 1st load or if wifi is not enabled, the next instructions explain how flash the firmware by USB connector.</p>
 <p>Flashing the firmware can vary depending on the specific board you are using (in that case please check the producer documentation for more details).  </p>
 <p>We document here <strong>2 options</strong> to flash the firmware that can fit on ESP32DevKitC-V4 and most ESP32 boards.  </p>
 <h4 id="21-flash-by-online-tool"><strong>2.1. Flash by ONLINE tool</strong></h4>
@@ -1766,6 +1833,13 @@ Register Sushipython on this device.      </p>
 <ul>
 <li><code>code</code>: unique 64-character code.</li>
 </ul>
+<p><strong><code>sushi.cmd("wd_init", timeout_sec:int)</code></strong>  <br />
+Enable Micropython script watch-dog</p>
+<ul>
+<li><code>timeout_sec</code> : Watch dog timeout in seconds. If 0 the WD is disabled.</li>
+</ul>
+<p><strong><code>sushi.cmd("wd_refresh")</code></strong>  <br />
+Micropython script watch-dog refresh. To avoid restart, must be called every a time less than the timeout defined with <code>sushi.cmd("wd_init", timeout_sec:int)</code></p>
 <hr />
 <h3 id="setup-and-status">SETUP and STATUS</h3>
 <p><strong><code>sushi_utils.get_sushi_config() -&gt; config:dict</code></strong><br />
@@ -1779,27 +1853,45 @@ Set configuration parameters (self restart if settings changed).  </p>
 <p><a href="https://github.com/sushi-iot/sushipython/blob/main/examples/common/sushi_board_setup.py"><em>Example code</em></a></p>
 <p><strong><code>sushi_utils.get_sushi_status() -&gt; status:dict</code></strong><br />
 Return full status structure</p>
-<p><strong><code>sushi_utils.load_setting(module:str, setting:str)  -&gt; value:str or int</code></strong><br />
+<p><strong><code>sushi_utils.load_setting(module:str, setting:str)  -&gt; value:int, str, dict</code></strong><br />
 Load a custom configuration parameter</p>
-<p><strong><code>sushi_utils.save_setting(module:str, setting:str, value:int or str) -&gt; result:int</code></strong><br />
+<p><strong><code>sushi_utils.save_setting(module:str, setting:str, value:int, str, dict) -&gt; result:int</code></strong><br />
 Save a custom configuration parameter  </p>
 <ul>
 <li><code>setting</code> : setting name</li>
 <li><code>value</code> : setting value</li>
 <li><code>result</code>(return): 0 = value not changed ; 1 = value changed ; &lt; 0 = error</li>
 </ul>
-<p><strong><code>sushi_utils.register_json_config_file(module_name:str , file:str) -&gt; result:int (0 = error ; 1 = ok)</code></strong><br />
-Register a JSON configuration file to the web interface. This let enable custom JSON configuration file to be changed even by web-interface.</p>
-<p><strong><code>sushi.cmd("rt_set", kv_settings:str)</code></strong><br />
-Set runtime settings in Key-Value format. These settings are not stored into the flash so are not retained across system restarts.</p>
+<p><strong><code>sushi_utils.register_upy_module(module_name:str , config_file:str , status_get_callback:func) -&gt; result:int (0 = error ; &gt; 0 = id)</code></strong><br />
+Register a MicroPython module to the web interface. This let integrate in the web-interface an application specific configuration and status in JSON format. In this way it's possible configure the appplication specific settings by web-interface and monitor the status both with web-application or remotely if <a href="#system-health-and-monitor">System health and monitor</a> function is enabled.</p>
 <ul>
-<li><code>kv_settings</code> : single or multiple KV settings. Enabled are:  <blockquote>
+<li><code>module_name</code> : the module name</li>
+<li>
+<p><code>config_file</code> : .json configuration file name. This where the configuration is get and stored.</p>
+</li>
+<li>
+<p><code>status_get_callback(module_id:int) -&gt; json:str</code>  </p>
+<blockquote>
 <ul>
-<li><code>cm_http_wifi_num_max_retry</code> , <code>cm_http_modem_num_max_retry</code>: comm. manager http call num. max try on wifi/modem channel (0 = channel not used , 1..10 , default=3)</li>
+<li><code>module_id</code>: the unique id returned by "register_upy_module" call. Can be ignored if the callback is not shared between different upy modules.</li>
+<li><code>json</code>(return): JSON format string with the module status</li>
 </ul>
 </blockquote>
 </li>
 </ul>
+<!-- OLD rimpiazzato da register_upy_module che lo ingloba
+**`sushi_utils.register_json_config_file(module_name:str , file:str) -> result:int (0 = error ; 1 = ok)`**  
+Register a JSON configuration file to the web interface. This let enable custom JSON configuration file to be changed even by web-interface.
+-->
+
+<!-- OLD attualmente non ne ho di setting globali
+**`sushi.cmd("rt_set", kv_settings:str)`**  
+Set runtime settings in Key-Value format. These settings are not stored into the flash so are not retained across system restarts.
+
+* `kv_settings` : single or multiple KV settings. Enabled are:  
+>- `cm_http_wifi_num_max_retry` , `cm_http_modem_num_max_retry`: comm. manager http call num. max try on wifi/modem channel (0 = channel not used , 1..10 , default=3)
+-->
+
 <hr />
 <h3 id="wifi-commands">WIFI COMMANDS</h3>
 <p><strong><code>sushi.cmd("wifi_stop")</code></strong><br />
@@ -1821,24 +1913,32 @@ Set a callback to receive http calls result.  </p>
 </blockquote>
 </li>
 </ul>
-<p><strong><code>sushi.cmd("http_get", args:tuple(url:str [, timeout_ms:int])) -&gt; unique_id:int</code></strong><br />
+<p><strong><code>sushi.cmd("http_get", args:tuple(url:str [, timeout_ms:int , http_opts:str])) -&gt; unique_id:int</code></strong><br />
 Start http GET call.</p>
 <ul>
 <li><code>url</code> : remote server URL</li>
 <li><code>timeout_ms</code> (optional, default 10000) : call timeout in ms</li>
+<li><code>http_opts</code> (optional) : http calls options in key-value format (see below)</li>
 <li><code>unique_id</code>(return): call unique ID (useful in callback to identify the reply) </li>
 </ul>
 <p><em>Example:</em> <code>sushi.cmd('http_get',('http://your-site.com' , 2500))</code></p>
-<p><strong><code>sushi.cmd("http_post", args:tuple(url:str , data:str [, data_type:str , timeout_ms:int])) -&gt; unique_id:int (call ID)</code></strong><br />
+<p><strong><code>sushi.cmd("http_post", args:tuple(url:str , data:str [, data_type:str , timeout_ms:int , http_opts:str])) -&gt; unique_id:int (call ID)</code></strong><br />
 Start http POST call  </p>
 <ul>
 <li><code>url</code> : remote server URL</li>
 <li><code>data</code> : data to be sent</li>
 <li><code>data_type</code> (optional, default: "application/json"): data type.</li>
 <li><code>timeout_ms</code> (optional, default 10000) : call timeout in ms</li>
+<li><code>http_opts</code> (optional) : http calls options in key-value format (see below)</li>
 <li><code>unique_id</code>(return): call unique ID (useful in callback to identify the reply) </li>
 </ul>
 <p><em>Example:</em> <code>sushi.cmd('http_post',('http://your-site/post_data.php' , 'hello world !' , 'text/plain' , 2500))</code></p>
+<p><strong><code>http_opts</code></strong>
+Single or multiple options in key-value format (';' is the separator between different options):</p>
+<ul>
+<li><code>cm_http_wifi_num_max_retry</code> : num. max try on WIFI channel (0 = channel not used , 1..10 , default=3)</li>
+<li><code>cm_http_modem_num_max_retry</code>: num. max try on MODEM channel (0 = channel not used , 1..10 , default=3)</li>
+</ul>
 <hr />
 <h3 id="web-server">WEB SERVER</h3>
 <p><strong><code>sushi.cmd("set_webserver_hnd", callback:func)</code></strong><br />

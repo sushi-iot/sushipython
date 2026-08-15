@@ -14,7 +14,7 @@ CHANGELOG
 
 import sushi
 import ujson as json  # MicroPython
-import sushi_defs
+# import sushi_defs
 
 
 """
@@ -92,6 +92,15 @@ def register_json_config_file(module_name , file):
         return 1
     return 0
 
+def register_upy_module(module_name , config_file , status_get_callback):
+    """
+    Register a upy module to the web interface
+    Example: sushi.cmd('reg_app_module' , ('mysettings' , 'sb/SETTINGS.json' , status_get_callback))
+    """
+    err,res = sushi.cmd('reg_app_module' , (module_name , config_file , status_get_callback))
+    if err == 0: return res
+    return 0
+
 
 def set_sushi_config(config):    
     err = 0
@@ -124,7 +133,7 @@ def get_sushi_status():
         return json.loads(json_str)
     return None
 
-
+''' REMOVED
 def pinout(board_id=None):
     """Mostra l'elenco delle board o il pinout di una board specifica."""
     if board_id is None:
@@ -146,7 +155,9 @@ def pinout(board_id=None):
     else:
         print(f"### Pinout for {board['desc']} [`board_model` ID: {board_id}] ###\n")
         print(board["help"])
-        
+'''
+
+''' REMOVED
 
 def list_params(mod=None):
     if isinstance(mod, str) and (mod.upper() in sushi_defs.PARAMETERS):
@@ -172,7 +183,9 @@ def list_params(mod=None):
         for mod in sushi_defs.PARAMETERS:
             print(f"* '{mod.lower()}'")
         print("\nCall list_params('MODULE') to see parameters of a module")
+'''
 
+''' REMOVED
 def print_md_help_appendix():
     
     def output_repl_command(title , command):
@@ -205,7 +218,7 @@ def print_md_help_appendix():
     output_repl_command('sushi_utils.list_params()' , 'list_params()')
     output_repl_command('sushi_utils.list_params("system")' , 'list_params("system")')
     output_repl_command('sushi_utils.list_params("wifi")' , 'list_params("wifi")')
-    
+'''    
 
 def help():
     # Version
