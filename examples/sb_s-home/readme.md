@@ -2,19 +2,25 @@
 
 ### Description
 
-Home domotics demo project.
+Home Automation Demo – SushiPython on Sushi Board
+
+A reference home automation project demonstrating the core features of the SushiPython framework. Tested for high reliability, it provides a turnkey starting point that can be customized and extended via code to fit your application.
 
 **Features**
 * Heater system thermostat: control a relay output connect to heater system
-    - Local control on physical interface
-    - Remote control by SMS
-* Main power loss/return detection
-    - Alert by SMS
+    + Local control physical interface
+    + Remote control by SMS
+    + Heater control by onboard relay
+* Garden irrigation
+    + Local control physical interface
+    + Remote control by SMS
+    + Auto start
+    + Remote output water channels activated by http
+* Main power loss detection
+    + Alert by SMS
 * Get status by SMS
 
-**Version** : `v1.1.2 - 2026-06-21`  
-
-**Video demo** : [Sushi IoT on instagram](https://www.instagram.com/sushi_board_iot/)
+**Version** : `1.2.2[2026-08-08]`  
 
 ---
 ### Source files
@@ -26,16 +32,16 @@ Home domotics demo project.
 **Start guide**
 * Assemble the Sushi Board (see hardware components section).
 * Download and flash the latest [Sushi IoT Firmware](https://github.com/sushi-iot/sushipython/releases) onto the board. 
-* Connect the ESP32DevKitC board to your PC by the USB connector (or use WebREPL if you prefer). 
+* Connect the ESP32DevKitC board to your PC by the USB connector. 
 * If you are new to MicroPython see this [basic MicroPython  guide](https://sushi-iot.github.io/sushipython/manual#micropython-introduction).    
-* Transfer the '.py' project source file to the board using your favourite MicroPython interface.  
+* Transfer the '.py' project source file to the board using your favourite MicroPython interface or by the integrated web file system manager.
 * Run the main script file.
 * From the REPL output it's possible check the script execution output.
 * To interrupt the script execution and return to the REPL prompt press "CTRL+C" (as you can see from the py code to manage all the tasks the script run a main loop).
 
 **Setup**
-* Application specific setting are into file "sb/SUSHI_HOME.json" (self created after the 1st script run):
-    - "modem_enabled_numbers" : List of phone numbers enabled to send/receive SMS.
+* Application specific setting are into file "sb/SUSHI_HOME.json" (self created after the 1st script run). Every section has it's parameters.
+    
 * Required system settings (file "sb/SYSTEM.json"):
   Modem SIM parameters:  
     - "modem_sim_sms_center" : operator SMS center number (necessary to let the modem manage SMS messages)
@@ -50,15 +56,22 @@ For more details about settings see comments in "sushi_home_config.py" file
 
 * **Heater system**
   - When the heater must start, it switches on the relay output. This is visible from the red LED on it.
-  - By scrolling the user menu, enter "Thermostat". This menu is added by this project. From here it is possible to set the heater target temperature.
+  - By scrolling the user UI, enter "Thermostat". This menu is added by this project. From here it is possible to set the heater target temperature.
   - From the "DIAGNOSTIC" menu it is possible to check the actual temperature read from the sensor.
-  - It is possible to set the target temperature by sending an SMS with the text "#SET-TEMP=...", for example "#SET-TEMP=22.5". Note: the source number must be included in the `MODEM_ENABLED_NUMBERS` list.
+  - It is possible to set the target temperature by sending an SMS with the text `#SET-TEMP=...`, for example `#SET-TEMP=22.5`. Note: the source number must be included in the `MODEM_ENABLED_NUMBERS` list.
 
 * **Main power loss/return detection**
   - By plugging or unplugging the main power supply, the script sends a status SMS message informing about the change to every number defined in the `MODEM_ENABLED_NUMBERS` list.
 
 * **SMS status monitor**
-  - It is always possible to check the system status by sending an SMS with the text "#STATUS?". The script replies only to this number (if it is included in the `MODEM_ENABLED_NUMBERS` list) with a status SMS.
+  - It is always possible to check the system status by sending an SMS with the text `#STATUS?`. The script replies only to this number (if it is included in the `MODEM_ENABLED_NUMBERS` list) with a status SMS.
+
+* **Garden irrigation**
+  - The garden water channels are set by the configuration. 
+  - It's possible start a channel:
+  >- automatically basing on configuration
+  >- by user UI in the "irrigation" sub-menu
+  >- by SMS with command `#START-CH=N` where N is the channel order as defined in the configuration from 1.
 
 ---
 ### Hardware components
@@ -71,11 +84,6 @@ All details about used modules, components & schematics are in Sushi Board doc:
 * [Sushi-Iot-Board schematic & components](https://github.com/sushi-iot/sushi-iot-board)
 
 ---
-### Overview
-
-[Sushi IoT on instagram](https://www.instagram.com/sushi_board_iot/)
-
----
 ### Hardware connections table
 
 For test/demo purposes, this project does not require any external hardware.
@@ -84,8 +92,9 @@ In a real application, the heater system must be connected to the relay output a
 ---
 ### Resources
 
+[Sushi IoT project overview](https://sushi-iot.github.io/sushipython/)  
 [Sushi-Iot-Board](https://github.com/sushi-iot/sushi-iot-board)  
 [Sushi IoT Firmware download](https://github.com/sushi-iot/sushipython/releases)  
 [Online coding manual](https://sushi-iot.github.io/sushipython/manual#micropython-introduction/)  
-[Sushi IoT project overview](https://sushi-iot.github.io/sushipython/)  
+[Sushi IoT on instagram](https://www.instagram.com/sushi_board_iot/)
 [Sushi IoT Framework microPython quick reference](https://github.com/sushi-iot/sushipython/tree/main/examples/sushi-quick-reference.md)  
