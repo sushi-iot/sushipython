@@ -1,7 +1,4 @@
-
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
+<!DOCTYPE html><html lang="en" class="no-js"><head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -34,7 +31,7 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
@@ -46,7 +43,17 @@
     
     
     
-  </head>
+  <link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
   
   
     <body dir="ltr">
@@ -77,12 +84,12 @@
     <a href="." title="SushiPython IoT" class="md-header__button md-logo" aria-label="SushiPython IoT" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -110,7 +117,7 @@
       
         <label class="md-header__button md-icon" for="__search">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         </label>
         <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -119,15 +126,15 @@
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
         
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
         </button>
       </nav>
       
@@ -163,7 +170,7 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -175,7 +182,7 @@
     <a href="." title="SushiPython IoT" class="md-nav__button md-logo" aria-label="SushiPython IoT" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 
     </a>
     SushiPython IoT
@@ -240,6 +247,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ui-gallery" class="md-nav__link">
+    <span class="md-ellipsis">
+      UI-Gallery
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#applications" class="md-nav__link">
     <span class="md-ellipsis">
       Applications
@@ -298,7 +314,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -546,7 +562,7 @@
   
   
   <span class="md-ellipsis">
-    Examples & projects
+    Examples &amp; projects
     
   </span>
   
@@ -586,7 +602,7 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -603,6 +619,15 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ui-gallery" class="md-nav__link">
+    <span class="md-ellipsis">
+      UI-Gallery
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#applications" class="md-nav__link">
@@ -657,33 +682,44 @@
 
 
 <h1 id="sushipython-iot-framework"><strong>SushiPython IoT Framework</strong></h1>
-<p><img src="img/SushiPython.png" width="50%" alt="Overview"></p>
-<p><strong>OS-like firmware for ESP32 🐟 A complete environment: Web UI, Menus &amp; Drivers out-of-the-box for MicroPython 🐍 From breadboard to real projects 🛠️🚀</strong><br />
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/SushiPython.png" data-desc-position="bottom" data-gallery="logo"><img src="img/SushiPython.png" width="50%" alt="Overview" data-gallery="logo"></a></p>
+<p><strong>OS-like firmware for ESP32 🐟 A complete environment: Web UI, Menus &amp; Drivers out-of-the-box for MicroPython 🐍 From breadboard to real projects 🛠️🚀</strong><br>
 SushiPython IoT is a firmware framework for boards based on ESP32 SoC, providing an environment that integrates solid system management with MicroPython.</p>
 <p>It is useful for students and makers to accelerate projects by using reliable building blocks to manage core functions, allowing you to <strong>focus on application development without getting lost in low-level system details</strong>.</p>
-<p><img alt="Overview" src="img/sushipython-overview-169.png" /></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/sushipython-overview-169.png" data-desc-position="bottom" data-gallery="overview"><img alt="Overview" data-gallery="overview" src="img/sushipython-overview-169.png"></a></p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Send an SMS outbound immediately</span>
-<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">&quot;send_sms&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Alarm: High temperature detected!&quot;</span><span class="p">,</span> <span class="s2">&quot;+39XXXXXXXXXX&quot;</span><span class="p">))</span>
+<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">"send_sms"</span><span class="p">,</span> <span class="p">(</span><span class="s2">"Alarm: High temperature detected!"</span><span class="p">,</span> <span class="s2">"+39XXXXXXXXXX"</span><span class="p">))</span>
 
 <span class="c1"># Perform asynchronous HTTP requests (GET &amp; POST) in a single line</span>
-<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">&quot;http_get&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;https://api.example.com/status&quot;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
-<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">&quot;http_post&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;https://api.example.com/data&quot;</span><span class="p">,</span> <span class="s1">&#39;{&quot;temp&quot;: 23.5}&#39;</span><span class="p">,</span> <span class="s2">&quot;application/json&quot;</span><span class="p">))</span>
+<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">"http_get"</span><span class="p">,</span> <span class="p">(</span><span class="s2">"https://api.example.com/status"</span><span class="p">,</span> <span class="mi">5000</span><span class="p">))</span>
+<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">"http_post"</span><span class="p">,</span> <span class="p">(</span><span class="s2">"https://api.example.com/data"</span><span class="p">,</span> <span class="s1">'{"temp": 23.5}'</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">))</span>
 
 <span class="c1"># Control system hardware without knowing the GPIO pin</span>
-<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">&quot;set_out_state&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;RELAY_1&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">"set_out_state"</span><span class="p">,</span> <span class="p">(</span><span class="s2">"RELAY_1"</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 
 <span class="c1"># Create an interactive item on the physical LCD menu</span>
-<span class="n">menu</span><span class="o">.</span><span class="n">add_enum_editable_item</span><span class="p">(</span><span class="s2">&quot;Relay Status&quot;</span><span class="p">,</span> <span class="n">on_relay_toggle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;OFF&quot;</span><span class="p">,</span> <span class="s2">&quot;ON&quot;</span><span class="p">)</span>
+<span class="n">menu</span><span class="o">.</span><span class="n">add_enum_editable_item</span><span class="p">(</span><span class="s2">"Relay Status"</span><span class="p">,</span> <span class="n">on_relay_toggle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"OFF"</span><span class="p">,</span> <span class="s2">"ON"</span><span class="p">)</span>
 
 <span class="c1"># Handle incoming Web Server requests in just a few lines</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">web_cb</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
     <span class="c1"># Only managed paths return a tuple</span>
-    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;/api/toggle&quot;</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">&quot;OK&quot;</span> <span class="p">,</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"/api/toggle"</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="s2">"OK"</span> <span class="p">,</span> <span class="s2">"text/plain"</span><span class="p">)</span> 
 
-<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">&quot;set_webserver_hnd&quot;</span><span class="p">,</span> <span class="n">web_cb</span><span class="p">)</span>
+<span class="n">sushi</span><span class="o">.</span><span class="n">cmd</span><span class="p">(</span><span class="s2">"set_webserver_hnd"</span><span class="p">,</span> <span class="n">web_cb</span><span class="p">)</span>
 </code></pre></div>
 
-<hr />
+<hr>
+<h2 id="ui-gallery"><strong>UI-Gallery</strong></h2>
+<p>click to open gallery...</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/ui-status-1.png" data-desc-position="bottom" data-gallery="webui"><img src="img/ui-status-1.png" width="40%" alt="UI-STATUS-1" data-gallery="webui"></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/ui-status-2.png" data-desc-position="bottom" data-gallery="webui"><img src="img/ui-status-2.png" width="0%" alt="UI-STATUS-2" data-gallery="webui" hidden></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/ui-setup-1.png" data-desc-position="bottom" data-gallery="webui"><img src="img/ui-setup-1.png" width="0%" alt="UI-SETUP-1" data-gallery="webui" hidden></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/ui-setup-2.png" data-desc-position="bottom" data-gallery="webui"><img src="img/ui-setup-2.png" width="0%" alt="UI-SETUP-2" data-gallery="webui" hidden></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/ui-fm.png" data-desc-position="bottom" data-gallery="webui"><img src="img/ui-fm.png" width="40%" alt="UI-FM" data-gallery="webui"></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/ui-log.png" data-desc-position="bottom" data-gallery="webui"><img src="img/ui-log.png" width="0%" alt="UI-LOG" data-gallery="webui" hidden></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/repl.png" data-desc-position="bottom" data-gallery="webui"><img src="img/repl.png" width="0%" alt="REPL" data-gallery="webui" hidden></a>
+<a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="img/menu-integration-2.png" data-desc-position="bottom" data-gallery="webui"><img src="img/menu-integration-2.png" width="0%" alt="USER-MENU-INTEGRATION" data-gallery="webui" hidden></a></p>
+<hr>
 <h2 id="applications"><strong>Applications</strong></h2>
 <ul>
 <li>Edge computing hubs</li>
@@ -696,7 +732,7 @@ SushiPython IoT is a firmware framework for boards based on ESP32 SoC, providing
 <li>Remote monitoring and data logging systems (e.g., weather stations)</li>
 <li>Local and remote control systems (via local interface, web interface, or modem)</li>
 </ul>
-<hr />
+<hr>
 <p><strong>It simplifies development</strong>:  </p>
 <ul>
 <li>Hardware management: Wi-Fi, LCD, keyboard, modem, I/O expansion, relays, power detection, battery level, buzzer.</li>
@@ -704,7 +740,7 @@ SushiPython IoT is a firmware framework for boards based on ESP32 SoC, providing
 <li>Embedded MicroPython environment: Users can run their own scripts freely, while built-in libraries provide optional system management features.</li>
 <li>Embedded high-level MicroPython libraries for rapid access to hardware and software functions (custom menus, web pages, I/O expansion, SMS, HTTP requests, etc.).</li>
 </ul>
-<hr />
+<hr>
 <p><strong>Manages all essential components typically present in an IoT system, regardless of the specific application:</strong></p>
 <ul>
 <li>Physical interface management (keyboard, display, status LEDs)</li>
@@ -714,7 +750,7 @@ SushiPython IoT is a firmware framework for boards based on ESP32 SoC, providing
 <li>Modular menu management for physical interface with keyboard and screen</li>
 <li>High-level MicroPython API for many typical functions: HTTP requests, SMS, GSM calls, web server extension, menu integration, I2C communication, etc.</li>
 </ul>
-<hr />
+<hr>
 <h2 id="main-resources"><strong>Main resources</strong></h2>
 <ul>
 <li><a href="manual/"><strong>Documentation</strong></a></li>
@@ -726,11 +762,11 @@ SushiPython IoT is a firmware framework for boards based on ESP32 SoC, providing
 <li><a href="https://hackaday.io/project/204489-sushi-iot-framework"><strong>Sushi-IoT on HACKADAY</strong></a></li>
 <li><a href="https://www.instagram.com/sushi_board_iot/"><strong>SushiBoard Instagram page</strong></a></li>
 </ul>
-<hr />
+<hr>
 <h2 id="credits"><strong>Credits</strong></h2>
-<p>This project embeds <a href="https://github.com/micropython/micropython">MicroPython</a>, a lean and efficient implementation of Python 3 optimized for microcontrollers.<br />
+<p>This project embeds <a href="https://github.com/micropython/micropython">MicroPython</a>, a lean and efficient implementation of Python 3 optimized for microcontrollers.<br>
 We acknowledge and thank the <a href="https://github.com/micropython/micropython">MicroPython developers and contributors</a> for their outstanding work.  </p>
-<hr />
+<hr>
 <h2 id="contacts"><strong>Contacts</strong></h2>
 <p>If you are interested in the Sushi IoT project or have any questions, feel free to contact me at "mo.iot.wiz[at]gmail[dot]com"</p>
 
@@ -787,5 +823,7 @@ We acknowledge and thank the <a href="https://github.com/micropython/micropython
       <script src="assets/javascripts/bundle.13a4f30d.min.js"></script>
       
     
-  </body>
-</html>
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
